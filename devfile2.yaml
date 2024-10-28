@@ -1,0 +1,27 @@
+schemaVersion: 2.2.0
+metadata:
+  name: simple-node-app
+components:
+  - name: nodejs
+    attributes:
+      gl/inject-editor: true
+    container:
+      image: node:16
+      memoryLimit: 512Mi
+      mountSources: true
+      endpoints:
+        - name: http
+          targetPort: 3000
+          exposure: public
+  - name: projects
+    volume:
+      size: 1Gi
+commands:
+  - id: run-app
+    exec:
+      component: nodejs
+      commandLine: "node app.js"
+      workingDir: /projects
+      group:
+        kind: run
+        isDefault: true

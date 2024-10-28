@@ -1,0 +1,15 @@
+schemaVersion: 2.2.0
+variables:
+  registry-root: registry.gitlab.com
+components:
+  - name: tooling-container
+    attributes:
+      gl/inject-editor: true
+    container:
+      image: "{{registry-root}}/gitlab-org/remote-development/gitlab-remote-development-docs/ubuntu:22.04"
+      env:
+        - name: KEY
+          value: VALUE
+      endpoints:
+        - name: http-3000
+          targetPort: 3000
